@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+Home Page
+{% endblock %}
+{% block content %}
+<div class="banner">
+		<h1>Generate Image Captions</h1>
+		<p>If it doesn't reload correctly, do a <b>Hard reload</b> of the page. Chrome: Ctrl+F5, Firefox: Ctrl+Shift+R</p>
+		<p>Just upload the photo below(Only jpg or PNG)</p>
+		<p>Project Developed by: I'M BATMAN and KORO SENSEI</p>
+</div>
+<div class="container">
+
+	<div class="middle">
+		<div class="left">
+			<div class="upload-form">
+				<h2>Upload:</h2>
+
+				<form action="/" method=post enctype=multipart/form-data>
+					<div class="form-group files color">
+					  <label>Upload Your File </label>
+						<input type="file" class="form-control" name="file" accept="image/*">
+						<div class="bbt">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="right">
+			<div class="upload-form">
+				<h1 align="center">Your output will be displayed here</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="bottom">
+			<h1></h1>
+</div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+
+{% endblock %}
