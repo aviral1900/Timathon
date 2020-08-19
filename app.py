@@ -2,6 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
+import time
 
 UPLOAD_FOLDER = f'{os.getcwd()}/uploads'
 
@@ -33,6 +34,8 @@ def upload_file():
     ll = os.listdir(UPLOAD_FOLDER)
     for ele in ll:
         os.remove(UPLOAD_FOLDER + "/"+ ele)
+    with open("uploads/caption.txt", "w") as dummy:
+        pass
     fpath = UPLOAD_FOLDER+"image.jpg"
     if os.path.exists(fpath):
         os.remove(fpath)
@@ -42,7 +45,7 @@ def upload_file():
             # flash('No file part')
             return redirect(request.url)
         file = request.files['file']
-        # if user does not select file, browser also
+        # if user does not select file, browser
         # submit an empty part without filename
         if file.filename == '':
             print('No selected file')
@@ -51,9 +54,16 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # return redirect(url_for('uploaded_file',filename=filename))
+            os.system('python3 ./AI/image_captioning/sample.py --image' + ' /uploads/' + filename)
+            count = 0
+            while os.path.getsize(f"/uploads/caption.txt") == 0:
+                if count >= 25:
+                    with open("uploads/caption.txt", "w") as dummy:
+                        dummy.write("Could not generate the caption")
+                    break
+                time.sleep(0.5)
+                count+=1
 
-            with open(f"uploads/{filename}.txt", "w") as f:
-                f.write("This is the Caption")
             return redirect(url_for('uploaded', name=filename))
     return render_template("index.html")
 
