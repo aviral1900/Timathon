@@ -25,7 +25,7 @@ def allowed_file(filename):
 @app.route('/<name>')
 def uploaded(name):
     cap = ""
-    with open(f"uploads/{name}.txt", "r") as f:
+    with open(f"uploads/caption.txt", "r") as f:
         cap += f.read()
     return render_template('index_after_upload.html', content=cap, img_name=name)
 
@@ -54,10 +54,14 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # return redirect(url_for('uploaded_file',filename=filename))
-            os.system('python3 ./AI/image_captioning/sample.py --image' + ' /uploads/' + filename)
+        
+            os.system('python3 ./AI/image_captioning/sample.py --image' + '/home/ubuntu/Timathon/uploads/' + filename)
             count = 0
-            while os.path.getsize(f"/uploads/caption.txt") == 0:
-                if count >= 25:
+            while os.path.getsize(f"uploads/caption.txt") == 0:
+                
+                
+                
+                if count >= 60:
                     with open("uploads/caption.txt", "w") as dummy:
                         dummy.write("Could not generate the caption")
                     break
