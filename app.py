@@ -29,13 +29,11 @@ def uploaded(name):
         cap += f.read()
     return render_template('index_after_upload.html', content=cap, img_name=name)
 
+tot_files = 0
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    ll = os.listdir(UPLOAD_FOLDER)
-    for ele in ll:
-        os.remove(UPLOAD_FOLDER + "/"+ ele)
-    with open("uploads/caption.txt", "w") as dummy:
-        pass
+    global tot_files
+
     fpath = UPLOAD_FOLDER+"image.jpg"
     if os.path.exists(fpath):
         os.remove(fpath)
@@ -51,18 +49,25 @@ def upload_file():
             print('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            if tot_files >= 10:
+                tot_files = 0
+                ll = os.listdir(UPLOAD_FOLDER)
+                for ele in ll:
+                    os.remove(UPLOAD_FOLDER + "/" + ele)
+            else:
+                tot_files += 1
+
             filename = secure_filename(file.filename)
+            with open(f"uploads/{filename}.txt", "w") as dummy:
+                pass
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # return redirect(url_for('uploaded_file',filename=filename))
         
             os.system('python3 ./AI/image_captioning/sample.py --image' + '/home/ubuntu/Timathon/uploads/' + filename)
             count = 0
-            while os.path.getsize(f"uploads/caption.txt") == 0:
-                
-                
-                
+            while os.path.getsize(f"uploads/{filename}.txt") == 0:
                 if count >= 60:
-                    with open("uploads/caption.txt", "w") as dummy:
+                    with open(f"uploads/{filename}.txt", "w") as dummy:
                         dummy.write("Could not generate the caption")
                     break
                 time.sleep(0.5)
