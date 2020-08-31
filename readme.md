@@ -6,8 +6,11 @@ Few model files were to big to upload on github so we have provided the link to 
 (link to be updated)
 
 If you want to run this project locally:
-> Create a folder named ubuntu in your home directory like this
+> Create a folder named ubuntu in your home directory like this.
+
 >   `~/ubuntu/` and clone this project at this location
+
 > Path should look like `~/ubuntu/Timathon` and change all paths inside app.py and AI/image_captioning/sample.py accordingly.
+
 > Install the dependencies from the requirements.txt along with (//pytorch command_to be filled//)
 Have fun :)
