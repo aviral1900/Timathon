@@ -1,6 +1,7 @@
 ## Timathon Submission of I'm Batman 2 and Koro Sensei
 
 Just navigate to the website ( http://52.91.153.72 ) and test out our project.
+### Check out the `example_0.png` file above, to view a sample run.
 
 Few model files were to big to upload on github so we have provided the link to the files along with the locations they reside.
 (link to be updated)
