@@ -13,4 +13,5 @@ If you want to run this project locally:
 > Path should look like `~/ubuntu/Timathon` and change all paths inside app.py and AI/image_captioning/sample.py accordingly.
 
 > Install the dependencies from the requirements.txt along with (//pytorch command_to be filled//)
-Have fun :)
+
+#Have fun :)
