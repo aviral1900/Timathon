@@ -25,8 +25,10 @@ def allowed_file(filename):
 @app.route('/<name>')
 def uploaded(name):
     cap = ""
-    with open(f"uploads/caption.txt", "r") as f:
+    with open(f"uploads/{name}.txt", "r") as f:
         cap += f.read()
+    if not cap.startswith("Could"):
+        cap = cap[8:-5]
     return render_template('index_after_upload.html', content=cap, img_name=name)
 
 tot_files = 0
@@ -63,7 +65,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # return redirect(url_for('uploaded_file',filename=filename))
         
-            os.system('python3 ./AI/image_captioning/sample.py --image' + '/home/ubuntu/Timathon/uploads/' + filename)
+            os.system('python3 ./AI/image_captioning/sample.py --image ' + '/home/ubuntu/Timathon/uploads/' + filename)
             count = 0
             while os.path.getsize(f"uploads/{filename}.txt") == 0:
                 if count >= 60:
