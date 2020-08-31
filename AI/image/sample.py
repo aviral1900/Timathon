@@ -63,15 +63,20 @@ def main(args):
     
     # Print out the image and the generated caption
     print (sentence)
+    name_split = str(args.image).split('/')
+    name = name_split[-1]
+    captionfile = open(f'/home/ubuntu/Timathon/uploads/{name}.txt','w+')
+    captionfile.write(sentence)
+    captionfile.close()
     image = Image.open(args.image)
     plt.imshow(np.asarray(image))
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--image', type=str, required=True, help='input image for generating caption')
-    parser.add_argument('--encoder_path', type=str, default='models/encoder-5-3000.pkl', help='path for trained encoder')
-    parser.add_argument('--decoder_path', type=str, default='models/decoder-5-3000.pkl', help='path for trained decoder')
-    parser.add_argument('--vocab_path', type=str, default='data/vocab.pkl', help='path for vocabulary wrapper')
+    parser.add_argument('--encoder_path', type=str, default='/home/ubuntu/Timathon/AI/image_captioning/models/encoder-5-3000.pkl', help='path for trained encoder')
+    parser.add_argument('--decoder_path', type=str, default='/home/ubuntu/Timathon/AI/image_captioning/models/decoder-5-3000.pkl', help='path for trained decoder')
+    parser.add_argument('--vocab_path', type=str, default='/home/ubuntu/Timathon/AI/image_captioning/data/vocab.pkl', help='path for vocabulary wrapper')
     
     # Model parameters (should be same as paramters in train.py)
     parser.add_argument('--embed_size', type=int , default=256, help='dimension of word embedding vectors')
