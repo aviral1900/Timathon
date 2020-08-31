@@ -14,4 +14,4 @@ If you want to run this project locally:
 
 > Install the dependencies from the requirements.txt along with (//pytorch command_to be filled//)
 
-#Have fun :)
+Have fun :)
