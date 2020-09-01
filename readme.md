@@ -1,4 +1,4 @@
-## Timathon Submission of I'm Batman 2 and Koro Sensei
+## Timathon Submission of I'm Batman and Koro Sensei
 
 Just navigate to the website ( http://52.91.153.72 ) and test out our project.
 ### Check out the `example_0.png` file above, to view a sample run.
