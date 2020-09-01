@@ -3,7 +3,7 @@
 Just navigate to the website ( http://52.91.153.72 ) and test out our project.
 ### Check out the `example_0.png` file above, to view a sample run.
 
-Few model files were to big to upload on github so we have provided the link to the files along with the locations they reside.
+Few model files were too big to upload on github so we have provided the link to the files along with the locations they reside.
 
 Since running the project locally is kinda cumbersome, since you have to download 500MB size of this repo and along with Huge dependencies, we recommend trying out the project on the link above instead, but if you want to run this project locally:
 
