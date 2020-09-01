@@ -21,6 +21,11 @@ Now follow these exaxt steps:
   e.g. `"python3 ./AI/image_captioning/sample.py --image" + "{PUT RESPECTIVE PATH TO UPLOADS FOLDER HERE} + filename"`
 * Now go to AI/image_captioning/sample.py and change the paths to all the files under `if __name__` code block:
   e.g. `/home/ubuntu/Timathon/AI/image_captioning/models` just change paths like these to the path that are on your machine
+  Also the caption file location:
+    In short all the paths you encounter while editing these two files to respective paths on your local machine.
+    (both of the files are really short and you won't be really lost if you know what you are doing, make sure you change all the paths, there aren't many)
+
+[Really sorry for a mess up like this, we could improve this but didn't have time]
 
 
 Have fun :)
