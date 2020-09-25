@@ -12,11 +12,6 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
-
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -32,10 +27,14 @@ def uploaded(name):
     return render_template('index_after_upload.html', content=cap, img_name=name)
 
 tot_files = 0
+main_files = 0
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    global tot_files
-
+    global tot_files, main_files
+    if main_files == tot_files:
+        main_files = 0
+        print("Limit exceeded")
+    main_files += 1
     fpath = UPLOAD_FOLDER+"image.jpg"
     if os.path.exists(fpath):
         os.remove(fpath)
